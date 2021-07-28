@@ -19,7 +19,7 @@ module.exports	= (sequelize, DataTypes) => {
             allowNull: false,
         },
         identidad: {
-            type: DataTypes.INTEGER,
+            type: DataTypes.BIGINT,
             allowNull: false,
         },
         departamento: {
@@ -31,7 +31,7 @@ module.exports	= (sequelize, DataTypes) => {
             allowNull: false,
         },
         telefono: {
-            type: DataTypes.INTEGER,
+            type: DataTypes.BIGINT,
             allowNull: false,
         },
         sede: {

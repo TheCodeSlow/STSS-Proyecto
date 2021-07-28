@@ -1,7 +1,13 @@
 const express = require('express');
 const app = express();
-const db = require('./models')
+app.use(express.json());
+const db = require('./models');
 
+//const router = require('./m');
+
+
+const postRouter = require('./routes/Posts');
+app.use("/usuarios", postRouter);
 
 db.sequelize.sync().then(() =>{
     app.listen(3000, () => {
