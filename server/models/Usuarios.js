@@ -39,7 +39,13 @@ module.exports	= (sequelize, DataTypes) => {
             allowNull: false,
         },
 
-    })
+    });
+
+    Usuarios.associate = (models)  => {
+        Usuarios.hasMany(models.Permisos, {
+            onDelete:"cascade",
+        });
+    };
     
     return Usuarios
 }
