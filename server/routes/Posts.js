@@ -24,20 +24,6 @@ router.post('/', async (req, res) => {
 
 
 
-/*router.get('/', async (req, res) => {
-    const listadePermisos = await Permisos.findAll();
-    res.json(listadePermisos);
-});
-
-router.post('/', async (req, res) => {
-    console.log(req.body)
-    const permisos = req.body;
-    await Permisos.create(permisos);
-    res.send(200,{message: 'Se han subido los datos a la BD'})
-    res.json(permisos);
-});
-*/
-
 
 
 

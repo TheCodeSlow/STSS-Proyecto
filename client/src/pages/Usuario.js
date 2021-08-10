@@ -6,6 +6,8 @@ function Usuario() {
     let { id } = useParams();
     const [postObject, setPostObject] = useState({});
     const [permisos, setPermisos] = useState([])
+    const [newPermiso, setnewPermiso] = useState("")
+   
 
     useEffect(()=> {
         axios.get(`http://localhost:3000/usuarios/byId/${id}`).then((response) => {
@@ -14,7 +16,15 @@ function Usuario() {
         axios.get(`http://localhost:3000/permisos/${id}`).then((response) => {
             setPermisos(response.data)
         });
-    })
+    }, []);
+
+
+    const addPermiso = () => {
+        axios.post ("http://localhost:3000/permisos", {tipoPermiso: newPermiso, UsuarioId: id}).then((response) =>{
+            const permisotoAdd = {tipoPermiso: newPermiso}
+            setPermisos([...permisos, permisotoAdd]);
+        });
+    }
     return (
         <div className="paginaUsuario">
             <div className="ladoIzquierdo">
@@ -31,10 +41,10 @@ function Usuario() {
             <div className="body">  {postObject.sede}</div>
             </div>;
             </div>
-            <div className="ladoDerecho">Permisos
-            <div className="añadirPermisoContainer"> <input type="text" placeholder="Tipo de Permiso" autoComplete="off"/></div>
+           {/*<div className="ladoDerecho">Permisos (falta hacer cambios cap 7)
+            <div className="añadirPermisoContainer"> <input type="text" placeholder="Tipo de Permiso" autoComplete="off" onChange={(event) =>{event.target.value}}/></div>
             <div className="añadirPermisoContainer"> <input type="text" placeholder="Descripcion del Permiso" autoComplete="off"/></div>
-            <button>Solicitar Permiso </button>
+            <button onClick={addPermiso}>Solicitar Permiso </button>
             <div className="listaDePermisos">{permisos.map((permiso, key) =>{
                 return <div key={key} className="permiso">{permiso.tipoPermiso}</div>
                 
@@ -42,6 +52,7 @@ function Usuario() {
             
           
             </div>
+        */}
         </div>
     )
 }

@@ -69,49 +69,49 @@ function crearUsuario() {
                  autocomplete="off"
                  id="inputCreateApellido" 
                 name="apellido"
-                 placeholder="(Ex. Alonzo...)" />
+                 placeholder="(Ex. Valdez...)" />
                  <label>usuario </label>
                  <ErrorMessage name="usuario" component="span"/>
                 <Field 
                 autocomplete="off"
                 id="inputCreateUsuario" 
                 name="usuario"
-                 placeholder="(Ex. Alonzo...)" />
+                 placeholder="(Ex. MValdez...)" />
                  <label>Identidad </label>
                  <ErrorMessage name="identidad" component="span"/>
                 <Field
                  autocomplete="off"
                  id="inputCreateIdentidad" 
                 name="identidad"
-                 placeholder="(Ex. Alonzo...)" />
+                 placeholder="(Ex. 03182000000042...)" />
                  <label>Departamento </label>
                  <ErrorMessage name="departamento" component="span"/>
                 <Field
                 autocomplete="off"
                 id="inputCreateDepartamento" 
                 name="departamento"
-                 placeholder="(Ex. Alonzo...)" />
+                 placeholder="(Ex. Informatica...)" />
                  <label>codigoEmpleado</label>
                  <ErrorMessage name="codigoEmpleado" component="span"/> 
                 <Field
                 autocomplete="off"
                 id="inputCreateCodigoEmpleado" 
                 name="codigoEmpleado"
-                 placeholder="(Ex. Alonzo...)" />
+                 placeholder="(Ex. HRN1999...)" />
                  <label>Telefono </label>
                  <ErrorMessage name="telefono" component="span"/>
                 <Field
                 autocomplete="off"
                 id="inputCreateTelefono" 
                 name="telefono"
-                 placeholder="(Ex. Alonzo...)" />
+                 placeholder="(Ex. 31970007..)" />
                  <label>Sede </label>
                  <ErrorMessage name="sede" component="span"/>
                 <Field
                 autocomplete="off"
                 id="inputCreateSede" 
                 name="sede"
-                 placeholder="(Ex. Alonzo...)" />
+                 placeholder="(Ex. Tegucigalpa...)" />
                  <button type="submit">Create Usuario</button>
                </Form>  
                

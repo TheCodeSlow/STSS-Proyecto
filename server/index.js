@@ -13,6 +13,9 @@ const postRouter = require('./routes/Posts');
 app.use("/usuarios", postRouter);
 const permisosRouter = require('./routes/Permisos');
 app.use("/permisos", permisosRouter);
+const usersRouter = require('./routes/Users');
+app.use("/auth", usersRouter);
+
 
 
 db.sequelize.sync().then(() =>{
