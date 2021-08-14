@@ -122,6 +122,14 @@ span {
   color: white;
 }
 
+.navbar button{
+  width: 150px;
+  height: 40px;
+  cursor: pointer;
+  margin: 1cm 1cm;
+  
+}
+
 /* INDIVIDUAL POST */
 .paginaUsuario {
   display: flex;

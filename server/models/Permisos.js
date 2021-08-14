@@ -7,6 +7,10 @@ module.exports	= (sequelize, DataTypes) => {
         Descripcion: {
             type: DataTypes.STRING,
             allowNull: false,
+        },
+        usuario: {
+            type: DataTypes.STRING,
+            allowNull: false,
         }
     })
     return Permisos

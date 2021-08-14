@@ -1,12 +1,14 @@
-import React, {useEffect, useState} from 'react'
+import React, {useEffect, useState, useContext} from 'react'
 import {useParams} from "react-router-dom"
 import  axios from "axios";
+import { AuthContext } from '../helpers/AuthContext'
 
 function Usuario() {
     let { id } = useParams();
     const [postObject, setPostObject] = useState({});
     const [permisos, setPermisos] = useState([])
     const [newPermiso, setnewPermiso] = useState("")
+    const {AuthState} = useContext(AuthContext)
    
 
     useEffect(()=> {
@@ -20,9 +22,33 @@ function Usuario() {
 
 
     const addPermiso = () => {
-        axios.post ("http://localhost:3000/permisos", {tipoPermiso: newPermiso, UsuarioId: id}).then((response) =>{
-            const permisotoAdd = {tipoPermiso: newPermiso}
-            setPermisos([...permisos, permisotoAdd]);
+        axios.post ("http://localhost:3000/permisos", {tipoPermiso: newPermiso, UsuarioId: id}, 
+        {
+            headers: {
+                accessToken: localStorage.getItem("accessToken"),
+            }
+        }
+        )
+        .then((response) =>{
+            if(response.data.error){
+                alert(response.data.error)
+               console.log(response.data.error)
+            }
+            else {
+                const permisotoAdd = {tipoPermiso: newPermiso, usuario: response.data.usuario}
+                setPermisos([...permisos, permisotoAdd]);
+                setnewPermiso("");
+            }
+            
+        });
+    }
+    const deletePermiso = (id) => {
+         axios.delete(`http://localhost:3000/permisos/${id}`, 
+         {headers: {accessToken: localStorage.getItem('accessToken')
+        }}).then(()=> {
+            setPermisos(permisos.filter((val)=> {
+                return val.id != id;
+            }))
         });
     }
     return (
@@ -41,18 +67,28 @@ function Usuario() {
             <div className="body">  {postObject.sede}</div>
             </div>;
             </div>
-           {/*<div className="ladoDerecho">Permisos (falta hacer cambios cap 7)
-            <div className="añadirPermisoContainer"> <input type="text" placeholder="Tipo de Permiso" autoComplete="off" onChange={(event) =>{event.target.value}}/></div>
+             
+           <div className="ladoDerecho">Permisos (falta hacer cambios cap 7,10)
+            <div className="añadirPermisoContainer"> <input type="text" placeholder="Tipo de Permiso" autoComplete="off" value={newPermiso} 
+            onChange={(event) => {setnewPermiso(event.target.value)}}/></div>
             <div className="añadirPermisoContainer"> <input type="text" placeholder="Descripcion del Permiso" autoComplete="off"/></div>
             <button onClick={addPermiso}>Solicitar Permiso </button>
-            <div className="listaDePermisos">{permisos.map((permiso, key) =>{
-                return <div key={key} className="permiso">{permiso.tipoPermiso}</div>
-                
-            })}</div>
+            <div className="listaDePermisos">
+                {permisos.map((permiso, key) =>{
+                return (
+                <div key={key} className="permiso"> {permiso.tipoPermiso}
+                <label>Usuario: {permiso.usuario}</label>
+                <label>Descripcion del permiso: {permiso.Descripcion}</label>
+                {AuthState.usuario === permiso.usuario  &&<button onClick={()=>{deletePermiso(permiso.id)}}>X </button>}
+                </div>
+                );
+            })}
+            </div>
             
           
             </div>
-        */}
+            
+        
         </div>
     )
 }

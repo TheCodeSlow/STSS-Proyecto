@@ -43,7 +43,7 @@ function Registro() {
                 type="password"
                 id="inputCreateUsuario" 
                 name="password"
-                 placeholder="Escriba uan contraseña" />
+                 placeholder="Escriba una contraseña" />
                  
                  <button type="submit">Registraro</button>
                </Form>  
