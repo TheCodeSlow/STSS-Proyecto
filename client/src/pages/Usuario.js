@@ -8,7 +8,7 @@ function Usuario() {
     const [postObject, setPostObject] = useState({});
     const [permisos, setPermisos] = useState([])
     const [newPermiso, setnewPermiso] = useState("")
-    const {AuthState} = useContext(AuthContext)
+    const {authState} = useContext(AuthContext)
    
 
     useEffect(()=> {
@@ -79,7 +79,7 @@ function Usuario() {
                 <div key={key} className="permiso"> {permiso.tipoPermiso}
                 <label>Usuario: {permiso.usuario}</label>
                 <label>Descripcion del permiso: {permiso.Descripcion}</label>
-                {AuthState.usuario === permiso.usuario  &&<button onClick={()=>{deletePermiso(permiso.id)}}>X </button>}
+                {authState.usuario === permiso.usuario  &&<button onClick={()=>{deletePermiso(permiso.id)}}>X </button>}
                 </div>
                 );
             })}

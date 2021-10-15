@@ -130,6 +130,14 @@ span {
   
 }
 
+.navbar .loggedInContainer {
+  flex: 50%;
+  height: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
 /* INDIVIDUAL POST */
 .paginaUsuario {
   display: flex;

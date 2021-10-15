@@ -5,9 +5,9 @@ import axios from 'axios';
 import { useHistory } from "react-router-dom";
 
 
-function crearUsuario() {
+function CrearUsuario() {
 
-
+    let history = useHistory();
     const initialValues = {
         nombre: "",
         segundoNombre: "",
@@ -38,15 +38,17 @@ function crearUsuario() {
     //
     const onSubmit = (data) =>{
         axios.post("http://localhost:3000/usuarios", data).then((response) => {
-            //history.push("/");
-          })
-    }
+            history.push("/");
+          });
+    };
 
     
 
     return (
         <div className="crearUsuarioPage">
-           <Formik initialValues={initialValues} onSubmit={onSubmit}
+           <Formik 
+           initialValues={initialValues} 
+           onSubmit={onSubmit}
            validationSchema={validationSchema}>
                 <Form className="formContainer">
                 <label>Nombre </label>
@@ -120,4 +122,4 @@ function crearUsuario() {
     )
 }
 
-export default crearUsuario
+export default CrearUsuario

@@ -15,6 +15,8 @@ const permisosRouter = require('./routes/Permisos');
 app.use("/permisos", permisosRouter);
 const usersRouter = require('./routes/Users');
 app.use("/auth", usersRouter);
+const horasRouter = require('./routes/Horas');
+app.use("/horas", horasRouter);
 
 
 

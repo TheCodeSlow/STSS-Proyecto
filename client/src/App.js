@@ -15,19 +15,18 @@ function App() {
 
    useEffect(() => {
       axios.get('http://localhost:3000/auth/auth', { headers: {
-         accessToken: localStorage.getItem('accessToken')}
-         }
-         ).then((response) => {
+         accessToken: localStorage.getItem("accessToken"),
+         },
+         })
+         .then((response) => {
          if (response.data.error) 
          {
-            setAuthState({...authState, status: false});
+            setAuthState({ ...authState, status: false});
          }
          else{
             setAuthState({usuario: response.data.usuario, id: response.data.id, status: true});
          }
-      })
-         
-      
+      });     
    },[])
 
    const logout = () => {
@@ -38,18 +37,19 @@ function App() {
      <AuthContext.Provider value={{authState, setAuthState}}>
       <Router>
       <div className="navbar">
-      <Link to="/crearUsuario"> Crear Usuario</Link>
       <Link to="/"> Home</Link>
-      {!authState.status ? (
+      <Link to="/crearUsuario"> Crear Usuario</Link>      
+      {!authState.status && (
          <>
       <Link to="/login"> Login</Link>
       <Link to="/registro"> Registro</Link>
         </>
-       ) : (
-         <button onClick={logout}> Cerrar Sesion </button>
-       
-         )} 
-         <h1>{authState.usuario}</h1>
+       ) }
+          
+            <div className="loggedInContainer">
+              <h1>{authState.usuario} </h1>
+              {authState.status && <button onClick={logout}> Logout</button>}
+            </div>         
       </div>
       <Switch>
       <Route path= "/" exact component={Home}/>

@@ -15,11 +15,18 @@ function Home() {
         setlistadeUsuarios(response.data);
       })
     }, []);
+
+    const horaAUsuario = (usuarioId) => {
+         axios.post("http://localhost:3000/horas", {UsuarioId: usuarioId}, 
+         {headers: {accessToken: localStorage.getItem('accessToken')}}).then((response) => {
+           alert(response.data)
+         })
+    }
     return (
      <div>
       {listadeUsuarios.map((value, key)=>{      
       return(
-        //Arreglar id
+       
        <div key={key} className="usuario" onClick={()=>{history.push(`/Usuario/${value.id}`)}}>  
       
       <div className="nombre"> {value.nombre}</div> 
@@ -29,7 +36,9 @@ function Home() {
       <div className="body"> {value.departamento}</div> 
       <div className="body"> {value.telefono}</div> 
       <div className="body"> {value.sede}</div> 
-      <div className="footer"> {value.usuario}</div> 
+      <div className="footer"> {value.usuario}
+      <button onClick={() => {horaAUsuario(value.id);}}></button>
+      </div> 
       </div>
       );
       })}
